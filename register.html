@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create CV</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navbar above form -->
+<div class="form-nav">
+    <button onclick="window.location.href='index.html'">Home</button>
+    <button onclick="window.location.href='login.html'">Login</button>
+</div>
+
+<!-- Registration Form -->
+<form id="registerForm">
+    <h2>Create Your CV</h2>
+
+    <input type="file" id="photo" accept="image/*" required>
+
+    <input type="text" id="name" placeholder="Full Name" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="text" id="phone" placeholder="Phone Number">
+
+    <input type="text" id="study" placeholder="Degree / Study">
+    <input type="text" id="institute" placeholder="Institute">
+
+    <textarea id="about" placeholder="About Me"></textarea>
+
+    <input type="text" id="skills" placeholder="Skills (HTML, CSS, JS)">
+    <input type="text" id="job" placeholder="Job Status">
+
+    <input type="text" id="languages" placeholder="Languages & Level (HTML:80, CSS:70)">
+    <p style="font-size:12px; color:#666;">Example: HTML:80, CSS:70, JS:90</p>
+
+    <input type="password" id="password" placeholder="Password" required>
+
+    <button type="submit">Create CV</button>
+</form>
+
+<script src="script.js"></script>
+</body>
+</html>

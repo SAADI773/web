@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Templates</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="site-nav">
+    <div class="nav-left">
+        <a class="logo" href="index.html" aria-label="CV Maker Home">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="3" width="20" height="18" rx="3" fill="#fff"></rect>
+                <path d="M7 8h10M7 12h10M7 16h6" stroke="#667eea" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </a>
+    </div>
+    <div class="nav-center"></div>
+    <div class="nav-right">
+        <a class="nav-link" href="login.html">Login</a>
+    </div>
+</nav>
+
+<div class="site-width">
+<main class="landing">
+    <h1>Templates</h1>
+    <p>Choose a template and click "Add" to include it in your account.</p>
+
+    <div class="template-grid">
+        <div class="template-card" data-id="basic">
+            <div class="tpl-preview">A</div>
+            <h3>Basic</h3>
+            <p>Clean, simple layout.</p>
+            <button class="add-tpl">Add Template</button>
+        </div>
+
+        <div class="template-card" data-id="modern">
+            <div class="tpl-preview">M</div>
+            <h3>Modern</h3>
+            <p>Bold headings, two-column layout.</p>
+            <button class="add-tpl">Add Template</button>
+        </div>
+
+        <div class="template-card" data-id="creative">
+            <div class="tpl-preview">C</div>
+            <h3>Creative</h3>
+            <p>Colorful and visual-first.</p>
+            <button class="add-tpl">Add Template</button>
+        </div>
+    </div>
+
+</main>
+</div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+    function getMyTemplates(){
+        try{ return JSON.parse(localStorage.getItem('myTemplates')||'[]'); }catch(e){ return []; }
+    }
+    function saveMyTemplates(arr){ localStorage.setItem('myTemplates', JSON.stringify(arr)); }
+
+    document.querySelectorAll('.template-card').forEach(function(card){
+        var btn = card.querySelector('.add-tpl');
+        var id = card.getAttribute('data-id');
+        // update button state if already added
+        var exists = getMyTemplates().some(t=>t.id===id);
+        if(exists){ btn.innerText='Added'; btn.disabled=true; }
+        btn.addEventListener('click', function(){
+            var templates = getMyTemplates();
+            if(!templates.some(t=>t.id===id)){
+                templates.push({ id: id, title: card.querySelector('h3').innerText, addedAt: Date.now() });
+                saveMyTemplates(templates);
+                btn.innerText = 'Added';
+                btn.disabled = true;
+                alert('Template "' + card.querySelector('h3').innerText + '" added to your account.');
+            }
+        });
+    });
+});
+</script>
+
+</body>
+</html>
